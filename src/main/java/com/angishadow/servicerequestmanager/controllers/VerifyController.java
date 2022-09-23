@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.angishadow.servicerequestmanager.helpers.*;
 
@@ -25,7 +26,12 @@ public class VerifyController {
         }
         boolean isValid = v.checkEmail(email.trim());
         c.setDomainValue(domain, isValid);
-        return ResponseEntity.ok(isValid);
+       if(isValid){
+       return ResponseEntity.status(HttpStatus.OK).body(isValid);
+       }  
+       else {
+       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isValid);
+       }      
     }
 
     @GetMapping("/verified-domains")

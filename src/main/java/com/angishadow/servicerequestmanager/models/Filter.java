@@ -13,7 +13,7 @@ public class Filter {
     private String type;
     private int priority;
     private double weight;
-
+    
     public Filter() {
     }
 
@@ -64,6 +64,9 @@ public class Filter {
         return Math.random();
     }
 
+    public double applyFilter (){
+        return Math.random();  
+    }
     @Override
     public String toString(){
         return "Type:"+type+"\nPriority:"+priority+"\nWeight:"+weight;
